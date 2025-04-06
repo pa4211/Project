@@ -24,7 +24,7 @@ with container:
     #container.markdown(ingredients_html, unsafe_allow_html=True)
 
 
-col1, col2 = st.columns(2,gap="large", border=False)
+col1, col2 = st.columns(2,gap="medium", border=False)
 
 
 # color3 = col3.select_slider(
