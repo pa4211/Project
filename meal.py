@@ -10,8 +10,8 @@ st.markdown('<h1 style="color: #FF5A5F;"> 😋 Meal Genie</h1>', unsafe_allow_ht
 container = st.container(border=False)
 with container:
     keywords = st_tags(
-    label='Enter Ingredients you have:',
-        text='Press enter to add more',
+    label='Enter Ingredients you have',
+        text='Enter ingredient and press enter',
         #value=["Carrots", "Onion"],
         #suggestions=['five', 'six', 'seven', 'eight', 'nine', 'three', 'eleven', 'ten', 'four'],
         maxtags=18,
