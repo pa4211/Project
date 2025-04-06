@@ -158,24 +158,36 @@ if st.button("Generate Recipes!", use_container_width=True, type="primary"):
             **Summary:**  
             A crispy, golden-brown patty made with mashed potato, crumbled paneer, and broccoli, balanced with classic {cuisine} spices.
 
-            **Ingredients:**  
-            - 1 cup broccoli, finely chopped  
-            - 1 medium potato, boiled and mashed  
-            - 1 cup paneer, crumbled  
-            - Spices, herbs, and oil (as listed)
-
-            **Instructions:**  
-            1. Prep vegetables and crumble paneer.  
-            2. Mix all ingredients.  
-            3. Shape into patties.  
-            4. Pan-fry until golden.
-
-            **Prep time:** 5 mins  
-            **Cook time:** 10 mins  
-            **Total:** ~15 mins  
-            **Calories:** ~200 (based on ingredient estimates)
-
-            Do **not** include any closing lines after the recipes.
+            **Summary:**  
+                A crispy, golden-brown patty made from mashed potato, crumbled paneer, and steamed broccoli, offering a satisfying blend of textures and flavors with {cuisine} spices.
+                
+                **Ingredients:**  
+                - 1 cup broccoli, finely chopped  
+                - 1 medium potato (boiled and mashed)  
+                - 1 cup paneer, crumbled  
+                - 1 tsp cumin powder  
+                - ½ tsp coriander powder  
+                - ½ tsp red chili powder  
+                - 1 tbsp chopped cilantro  
+                - Salt to taste  
+                - 1–2 tbsp breadcrumbs (optional)  
+                - 1 tbsp oil (for frying)
+                
+                **Instructions:**
+                1. **Prep the filling (5 mins):** Boil and mash the potato. Steam and chop broccoli. Crumble the paneer.
+                2. **Mix ingredients (5 mins):** Combine potato, paneer, broccoli, spices, and salt. Add breadcrumbs if needed for binding.
+                3. **Shape the tikkis (5 mins):** Form small round or oval patties.
+                4. **Fry (5–7 mins):** Heat oil and fry tikkis until golden and crispy, about 2–3 minutes per side.
+                5. **Serve:** Enjoy with chutney or sauce.
+                
+                **Estimated Time Breakdown:**
+                - Prep time: 5 mins
+                - Cooking time: 10–12 mins
+                - Frying time: 5–7 mins
+                - Shaping time: 5 mins
+                
+                ✅ **Total Time:** ~15–17 minutes  
+                🔥 **Calories (per serving):** ~180–220
 
             Five similar recipes for inspiration only if cuisine specified is Indian:
             {recipe_info}
