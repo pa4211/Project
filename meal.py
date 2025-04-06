@@ -124,7 +124,7 @@ if st.button("Generate Recipes!", use_container_width=True, type="primary"):
            prompt = f"""Act as an expert {cuisine} chef. Your task is to generate two delicious, practical {cuisine} recipes using only the ingredients specified. 
 First, check if any item in this ingredient list: {query}, is harmful or non-edible. If so, say "Sorry, one or more ingredients are not valid."
 If user does not provide any input, then politely say "Please specify the ingredient(s). Dont forget to press enter!"
-If all ingredients are valid, create two recipe suggestions using only the following:
+Else, if all ingredients are valid, create two recipe suggestions using only the following:
 - Ingredients: {ingredients}
 - Protein: {protein} > adjust / introduce / remove the ingredients according touser preference
 - Carbs: {carb} > adjust / introduce / remove the ingredients according to user preference
