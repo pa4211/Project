@@ -51,9 +51,9 @@ protein = col1.select_slider(
 col1.write("") 
 
 
-cuisine = col1.selectbox("Select Cuisine", cuisine_options)
+cuisine = col2.selectbox("Select Cuisine", cuisine_options)
 
-carb = col2.select_slider(
+carb = col1.select_slider(
     "Carbs",
     options=[
          "Low",
@@ -63,7 +63,7 @@ carb = col2.select_slider(
 )
 col2.write("") 
 time_options = ["10-15 mins", "15-30 mins", "30+ mins"]
-time = col2.pills("Cooking Time", time_options, selection_mode="single")
+time = col1.pills("Cooking Time", time_options, selection_mode="single")
 
 
 
