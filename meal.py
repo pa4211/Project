@@ -122,72 +122,71 @@ if st.button("Generate Recipes!", use_container_width=True, type="primary"):
     #                 #st.write(f"Recipe Text Preview: {text_preview}")
     #                 st.write(f"Recipe Text: {recipe['recipe_text']}")
     prompt = f"""
-            Act as an expert {cuisine} chef. Generate **two creative and practical {cuisine} recipes** using only the specified ingredients. Follow these steps:
+        
+            Act as an expert {cuisine} chef. Generate **two creative and practical {cuisine} recipes** using only the specified ingredients.
 
-            1. **Ingredient check**: If the list {query} contains any harmful or inedible items, respond with:  
-            "Sorry, one or more ingredients are not valid." Then exit.
+            - First, check the list: if {query} includes any harmful, toxic, or inedible items, respond with:  
+              "Sorry, one or more ingredients are not valid." Then stop.
 
-            2. **Missing input**: If no ingredients are provided, reply with:  
-            "Please specify the ingredient(s). Don’t forget to press enter!" then Exit.
+            - If no ingredients are provided, reply:  
+              "Please specify the ingredient(s). Don’t forget to press enter!" Then stop.
 
-            3. **If all ingredients are valid**, generate two new recipe suggestions:
-            - Use only the following:
-                - **Ingredients**: {ingredients}
-                - **Protein**: {protein} (you may adjust or remove per preference)
-                - **Carbs**: {carb} (you may adjust or remove per preference)
-                - **Cuisine**: {cuisine}
-            - **Cooking time must be under {time} minutes.**
-            - You may add small amounts of common, non-harmful flavor enhancers used in {cuisine}, but **do not introduce new main ingredients.**
-            - If cuisine is **Indian**, draw inspiration from the provided chef-created {cuisine} recipes below, but **do not copy them**.
+            - If ingredients are valid, continue and generate two unique recipes:
+              - Use **only** the following:
+                  - **Ingredients**: {ingredients}
+                  - **Protein**: {protein} (optional – adjust or skip)
+                  - **Carbs**: {carb} (optional – adjust or skip)
+                  - **Cuisine**: {cuisine}
+              - Ensure total **cooking time is under {time} minutes**
+              - You may use **very small amounts of common flavor enhancers** (e.g., oil, salt, spices), but **do not add new main ingredients**
+              - If cuisine is **Indian**, take inspiration from the provided Indian recipe, but **do not copy it**
 
-            For **each recipe**, include:
+            For **each recipe**, output:
             - A compelling and descriptive recipe name
             - A short summary (flavor profile, uniqueness)
-            - Ingredient list (only from the allowed ingredients)
-            - Step-by-step instructions
-            - Prep time, cook time, total time
-            - Estimated calories and a note on how they were calculated
-            - Emphasize flavor, texture, practicality, and ease
+            - Ingredient list (only from the allowed items)
+            - Clear, step-by-step cooking instructions
+            - Prep time, cook time, and total time
+            - Estimated calories with a short note on how they were calculated
+            - Emphasize flavor, texture, ease, and uniqueness
 
-            Avoid repetition, and ensure the recipes are distinct from each other and the inspirations provided.
+            Avoid repetition—ensure both recipes are distinct from each other and from the example.
 
             ### Example Output Format:
 
             ### 🥘 Aloo Broccoli Paneer Tikki
 
             **Summary:**  
-            A crispy, golden-brown patty made with mashed potato, crumbled paneer, and broccoli, balanced with classic {cuisine} spices.
+            A crispy, golden-brown patty made from mashed potato, crumbled paneer, and steamed broccoli, offering a satisfying blend of textures and flavors with {cuisine} spices.
+                
+            **Ingredients:**  
+            - 1 cup broccoli, finely chopped  
+            - 1 medium potato (boiled and mashed)  
+            - 1 cup paneer, crumbled  
+            - 1 tsp cumin powder  
+            - ½ tsp coriander powder  
+            - ½ tsp red chili powder  
+            - 1 tbsp chopped cilantro  
+            - Salt to taste  
+            - 1–2 tbsp breadcrumbs (optional)  
+            - 1 tbsp oil (for frying)
+                
+            **Instructions:**
+            1. **Prep the filling (5 mins):** Boil and mash the potato. Steam and chop broccoli. Crumble the paneer.
+            2. **Mix ingredients (5 mins):** Combine potato, paneer, broccoli, spices, and salt. Add breadcrumbs if needed for binding.
+            3. **Shape the tikkis (5 mins):** Form small round or oval patties.
+            4. **Fry (5–7 mins):** Heat oil and fry tikkis until golden and crispy, about 2–3 minutes per side.
+            5. **Serve:** Enjoy with chutney or sauce.
+                
+            **Estimated Time Breakdown:**
+            - Prep time: 5 mins
+            - Cooking time: 10–12 mins
+            - Frying time: 5–7 mins
+            - Shaping time: 5 mins
+                
+            ✅ **Total Time:** ~15–17 minutes  
+            🔥 **Calories (per serving):** ~180–220
 
-            **Summary:**  
-                A crispy, golden-brown patty made from mashed potato, crumbled paneer, and steamed broccoli, offering a satisfying blend of textures and flavors with {cuisine} spices.
-                
-                **Ingredients:**  
-                - 1 cup broccoli, finely chopped  
-                - 1 medium potato (boiled and mashed)  
-                - 1 cup paneer, crumbled  
-                - 1 tsp cumin powder  
-                - ½ tsp coriander powder  
-                - ½ tsp red chili powder  
-                - 1 tbsp chopped cilantro  
-                - Salt to taste  
-                - 1–2 tbsp breadcrumbs (optional)  
-                - 1 tbsp oil (for frying)
-                
-                **Instructions:**
-                1. **Prep the filling (5 mins):** Boil and mash the potato. Steam and chop broccoli. Crumble the paneer.
-                2. **Mix ingredients (5 mins):** Combine potato, paneer, broccoli, spices, and salt. Add breadcrumbs if needed for binding.
-                3. **Shape the tikkis (5 mins):** Form small round or oval patties.
-                4. **Fry (5–7 mins):** Heat oil and fry tikkis until golden and crispy, about 2–3 minutes per side.
-                5. **Serve:** Enjoy with chutney or sauce.
-                
-                **Estimated Time Breakdown:**
-                - Prep time: 5 mins
-                - Cooking time: 10–12 mins
-                - Frying time: 5–7 mins
-                - Shaping time: 5 mins
-                
-                ✅ **Total Time:** ~15–17 minutes  
-                🔥 **Calories (per serving):** ~180–220
 
             Five similar recipes for inspiration only if cuisine specified is Indian:
             {recipe_info}
