@@ -125,10 +125,10 @@ if st.button("Generate Recipes!", use_container_width=True, type="primary"):
             Act as an expert {cuisine} chef. Generate **two creative and practical {cuisine} recipes** using only the specified ingredients. Follow these steps:
 
             1. **Ingredient check**: If the list {query} contains any harmful or inedible items, respond with:  
-            "Sorry, one or more ingredients are not valid."
+            "Sorry, one or more ingredients are not valid." Then exit.
 
             2. **Missing input**: If no ingredients are provided, reply with:  
-            "Please specify the ingredient(s). Don’t forget to press enter!"
+            "Please specify the ingredient(s). Don’t forget to press enter!" then Exit.
 
             3. **If all ingredients are valid**, generate two new recipe suggestions:
             - Use only the following:
