@@ -49,7 +49,7 @@ protein = col2.select_slider(
     ]
 )
 col1.write("") 
-
+col1.write("") 
 
 cuisine = col1.selectbox("Select Cuisine", cuisine_options)
 
