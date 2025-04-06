@@ -121,78 +121,78 @@ if st.button("Generate Recipes!", use_container_width=True, type="primary"):
     #                 #text_preview = recipe['recipe_text'][:500] + "..." if len(recipe['recipe_text']) > 500 else recipe['recipe_text']
     #                 #st.write(f"Recipe Text Preview: {text_preview}")
     #                 st.write(f"Recipe Text: {recipe['recipe_text']}")
-          prompt = f"""
-Act as an expert {cuisine} chef. Generate **two creative and practical {cuisine} recipes** using only the specified ingredients. Follow these steps:
+    prompt = f"""
+            Act as an expert {cuisine} chef. Generate **two creative and practical {cuisine} recipes** using only the specified ingredients. Follow these steps:
 
-1. **Ingredient check**: If the list {query} contains any harmful or inedible items, respond with:  
-   "Sorry, one or more ingredients are not valid."
+            1. **Ingredient check**: If the list {query} contains any harmful or inedible items, respond with:  
+            "Sorry, one or more ingredients are not valid."
 
-2. **Missing input**: If no ingredients are provided, reply with:  
-   "Please specify the ingredient(s). Don’t forget to press enter!"
+            2. **Missing input**: If no ingredients are provided, reply with:  
+            "Please specify the ingredient(s). Don’t forget to press enter!"
 
-3. **If all ingredients are valid**, generate two new recipe suggestions:
-   - Use only the following:
-     - **Ingredients**: {ingredients}
-     - **Protein**: {protein} (you may adjust or remove per preference)
-     - **Carbs**: {carb} (you may adjust or remove per preference)
-     - **Cuisine**: {cuisine}
-   - **Cooking time must be under {time} minutes.**
-   - You may add small amounts of common, non-harmful flavor enhancers used in {cuisine}, but **do not introduce new main ingredients.**
-   - If cuisine is **Indian**, draw inspiration from the provided chef-created {cuisine} recipes below, but **do not copy them**.
+            3. **If all ingredients are valid**, generate two new recipe suggestions:
+            - Use only the following:
+                - **Ingredients**: {ingredients}
+                - **Protein**: {protein} (you may adjust or remove per preference)
+                - **Carbs**: {carb} (you may adjust or remove per preference)
+                - **Cuisine**: {cuisine}
+            - **Cooking time must be under {time} minutes.**
+            - You may add small amounts of common, non-harmful flavor enhancers used in {cuisine}, but **do not introduce new main ingredients.**
+            - If cuisine is **Indian**, draw inspiration from the provided chef-created {cuisine} recipes below, but **do not copy them**.
 
-For **each recipe**, include:
-- A compelling and descriptive recipe name
-- A short summary (flavor profile, uniqueness)
-- Ingredient list (only from the allowed ingredients)
-- Step-by-step instructions
-- Prep time, cook time, total time
-- Estimated calories and a note on how they were calculated
-- Emphasize flavor, texture, practicality, and ease
+            For **each recipe**, include:
+            - A compelling and descriptive recipe name
+            - A short summary (flavor profile, uniqueness)
+            - Ingredient list (only from the allowed ingredients)
+            - Step-by-step instructions
+            - Prep time, cook time, total time
+            - Estimated calories and a note on how they were calculated
+            - Emphasize flavor, texture, practicality, and ease
 
-Avoid repetition, and ensure the recipes are distinct from each other and the inspirations provided.
+            Avoid repetition, and ensure the recipes are distinct from each other and the inspirations provided.
 
-### Example Output Format:
+            ### Example Output Format:
 
-### 🥘 Aloo Broccoli Paneer Tikki
+            ### 🥘 Aloo Broccoli Paneer Tikki
 
-**Summary:**  
-A crispy, golden-brown patty made with mashed potato, crumbled paneer, and broccoli, balanced with classic {cuisine} spices.
+            **Summary:**  
+            A crispy, golden-brown patty made with mashed potato, crumbled paneer, and broccoli, balanced with classic {cuisine} spices.
 
-**Ingredients:**  
-- 1 cup broccoli, finely chopped  
-- 1 medium potato, boiled and mashed  
-- 1 cup paneer, crumbled  
-- Spices, herbs, and oil (as listed)
+            **Ingredients:**  
+            - 1 cup broccoli, finely chopped  
+            - 1 medium potato, boiled and mashed  
+            - 1 cup paneer, crumbled  
+            - Spices, herbs, and oil (as listed)
 
-**Instructions:**  
-1. Prep vegetables and crumble paneer.  
-2. Mix all ingredients.  
-3. Shape into patties.  
-4. Pan-fry until golden.
+            **Instructions:**  
+            1. Prep vegetables and crumble paneer.  
+            2. Mix all ingredients.  
+            3. Shape into patties.  
+            4. Pan-fry until golden.
 
-**Prep time:** 5 mins  
-**Cook time:** 10 mins  
-**Total:** ~15 mins  
-**Calories:** ~200 (based on ingredient estimates)
+            **Prep time:** 5 mins  
+            **Cook time:** 10 mins  
+            **Total:** ~15 mins  
+            **Calories:** ~200 (based on ingredient estimates)
 
-Do **not** include any closing lines after the recipes.
+            Do **not** include any closing lines after the recipes.
 
-Five similar recipes for inspiration only if cuisine specified is Indian:
-{recipe_info}
-"""
+            Five similar recipes for inspiration only if cuisine specified is Indian:
+            {recipe_info}
+            """
 
 
 
        
            
-           chat_client = AzureOpenAIChat()
-           response = chat_client.generate_response(prompt)
+    chat_client = AzureOpenAIChat()
+    response = chat_client.generate_response(prompt)
            #st.write(response)
-           recipe_content = response["choices"][0]["message"]["content"]
-           st.write(recipe_content)
-           recipe_content = recipe_content.replace("```json", "").replace("```", "").strip()
+    recipe_content = response["choices"][0]["message"]["content"]
+    st.write(recipe_content)
+    recipe_content = recipe_content.replace("```json", "").replace("```", "").strip()
           
-    else:
+else:
                 print("No similar recipes found.")
 
                
