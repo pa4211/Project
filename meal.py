@@ -39,7 +39,7 @@ col1, col2 = st.columns(2,gap="large", border=False)
 
 cuisine_options = ["Dutch", "Indian"]
 
-protein = col1.select_slider(
+protein = col2.select_slider(
     "Protein",
     options=[
         "Low",
@@ -51,9 +51,9 @@ protein = col1.select_slider(
 col1.write("") 
 
 
-cuisine = col2.selectbox("Select Cuisine", cuisine_options)
+cuisine = col1.selectbox("Select Cuisine", cuisine_options)
 
-carb = col1.select_slider(
+carb = col2.select_slider(
     "Carbs",
     options=[
          "Low",
