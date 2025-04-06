@@ -37,7 +37,7 @@ col1, col2 = st.columns(2,gap="medium", border=False)
 # )
 
 
-cuisine_options = ["Dutch", "Indian"]
+cuisine_options = ["Indian", "Dutch"]
 cuisine = col1.selectbox("Select Cuisine", cuisine_options)
 col1.write("") 
 
