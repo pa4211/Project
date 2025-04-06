@@ -199,12 +199,15 @@ if st.button("Generate Recipes!", use_container_width=True, type="primary"):
     chat_client = AzureOpenAIChat()
     response = chat_client.generate_response(prompt)
            #st.write(response)
-    recipe_content = response["choices"][0]["message"]["content"]
-    st.write(recipe_content)
-    recipe_content = recipe_content.replace("```json", "").replace("```", "").strip()
-          
+
+    try:
+        recipe_content = response["choices"][0]["message"]["content"]
+        st.write(recipe_content)
+        recipe_content = recipe_content.replace("```json", "").replace("```", "").strip()
+    except (KeyError, IndexError, TypeError):
+        st.error("Oops! Something went wrong while generating the recipes. Please try again.")
 else:
-                print("No similar recipes found.")
+        print("No similar recipes found.")
 
                
 # container = st.container(border=True)
