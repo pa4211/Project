@@ -55,8 +55,6 @@ protein = col2.select_slider(
 )
 
 
-col2.write("") 
-
 carb = col2.select_slider(
     "Carbs",
     options=[
