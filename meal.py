@@ -38,6 +38,11 @@ col1, col2 = st.columns(2,gap="medium", border=False)
 
 
 cuisine_options = ["Dutch", "Indian"]
+cuisine = col1.selectbox("Select Cuisine", cuisine_options)
+col1.write("") 
+
+time_options = ["10-15 mins", "15-30 mins", "30+ mins"]
+time = col1.pills("Cooking Time", time_options, selection_mode="single")
 
 protein = col2.select_slider(
     "Protein",
@@ -48,10 +53,9 @@ protein = col2.select_slider(
         
     ]
 )
-col1.write("") 
-col1.write("") 
 
-cuisine = col1.selectbox("Select Cuisine", cuisine_options)
+
+col2.write("") 
 
 carb = col2.select_slider(
     "Carbs",
@@ -61,9 +65,7 @@ carb = col2.select_slider(
         "High",
     ]
 )
-col2.write("") 
-time_options = ["10-15 mins", "15-30 mins", "30+ mins"]
-time = col1.pills("Cooking Time", time_options, selection_mode="single")
+
 
 
 
