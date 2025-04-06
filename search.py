@@ -95,7 +95,7 @@ class RecipeEmbeddingSearch:
     def search_similar_recipes(
         self, 
         query_text: str, 
-        top_k: int = 5
+        top_k: int = 2
     ) -> List[Dict[str, Any]]:
         """
         Search for similar recipes based on query text
