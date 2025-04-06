@@ -133,7 +133,7 @@ If all ingredients are valid, create two recipe suggestions using only the follo
 You can add non-harmful, flavor-enhancing ingredients commonly used in {cuisine} but **do not introduce new main ingredients**. Only if the cusine selected by user is Indian, then Use the prUse the provided chef-created {cuisine} recipes (listed below) for inspiration, but **do not copy them**. Create entirely new recipes with traditional and innovative flavor combinations.
 
 For each recipe, include:
-- A creative and descriptive recipe name
+- A nice and descriptive recipe name
 - A brief summary of the dish (flavor profile, what makes it unique)
 - Ingredient list (using only the provided ingredients)
 - Step-by-step instructions
