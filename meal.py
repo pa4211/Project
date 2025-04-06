@@ -7,10 +7,10 @@ st.markdown('<h1 style="color: #FF5A5F;"> 😋 Meal Genie</h1>', unsafe_allow_ht
 
 
 
-container = st.container(border=True)
+container = st.container(border=False)
 with container:
     keywords = st_tags(
-    label='Available Ingredients:',
+    label='Enter Ingredients you have:',
         text='Press enter to add more',
         #value=["Carrots", "Onion"],
         #suggestions=['five', 'six', 'seven', 'eight', 'nine', 'three', 'eleven', 'ten', 'four'],
@@ -21,28 +21,12 @@ with container:
     for ingredient in ingredients:
         ingredients_html += f'<div style="background-color: #F0F2F6; padding: 5px 10px; border-radius: 15px;">{ingredient}</div>'
 
-    container.markdown(ingredients_html, unsafe_allow_html=True)
+    #container.markdown(ingredients_html, unsafe_allow_html=True)
 
 
-# col1, col2, col3 = st.columns(3,gap="small", border=True)
+col1, col2 = st.columns(2,gap="large", border=False)
 
-# color1 = col1.select_slider(
-#     "Protein",
-#     options=[
-#         "Low",
-#         "Medium",
-#         "High",
-        
-#     ]
-# )
-# color2 = col2.select_slider(
-#     "Carbs",
-#     options=[
-#          "Low",
-#         "Medium",
-#         "High",
-#     ]
-# )
+
 # color3 = col3.select_slider(
 #     "Fat",
 #     options=[
@@ -51,14 +35,38 @@ with container:
 #         "High",
 #     ]
 # )
+col1.write("") 
+col2.write("") 
+cuisine_options = ["Dutch", "Indian"]
+cuisine = col1.selectbox("Select Cuisine", cuisine_options)
 
-# left, right = st.columns(2,vertical_alignment="center", gap="small", border=True)
-# options = ["10-15 mins", "15-30 mins", "30+ mins"]
-# selection = left.pills("Cooking Time", options, selection_mode="single")
+time_options = ["10-15 mins", "15-30 mins", "30+ mins"]
+time = col2.pills("Cooking Time", time_options, selection_mode="single")
+
+protein = col1.select_slider(
+    "Protein",
+    options=[
+        "Low",
+        "Medium",
+        "High",
+        
+    ]
+)
+carb = col2.select_slider(
+    "Carbs",
+    options=[
+         "Low",
+        "Medium",
+        "High",
+    ]
+)
 
 
 # options = ["<500 KCal", "<1000 KCal", "No Limits"]
-# selection = right.pills("Calories", options, selection_mode="single")
+# selection = col2.pills("Calories", options, selection_mode="single")
+#left, right = st.columns(2,vertical_alignment="center", gap="small", border=True)
+# col1, col2 = st.columns(2,gap="small", border=True)
+
 
 
 if st.button("Generate Recipes!", use_container_width=True, type="primary"):
@@ -108,55 +116,52 @@ if st.button("Generate Recipes!", use_container_width=True, type="primary"):
     #                 #text_preview = recipe['recipe_text'][:500] + "..." if len(recipe['recipe_text']) > 500 else recipe['recipe_text']
     #                 #st.write(f"Recipe Text Preview: {text_preview}")
     #                 st.write(f"Recipe Text: {recipe['recipe_text']}")
-           prompt =  f"""Act as a expert Indian chef. Your task is to generate two delicious, and practical Indian recipes that use all the ingredients specified.
-First Check if one or more of the items in this ingredient list: {query} ,  are harmful or non-edible for humans to consume, then say "sorry"
-Else Use the {ingredients} to come up with 2 recipe suggestions. Dont add new ingredients. 
-Use only whats provided. Dont add new main ingredients. You are free to add other non-harmful ingredients that add flavor and taste, and that are available commonly at Indianhome.
+           prompt = f"""Act as an expert {cuisine} chef. Your task is to generate two delicious, practical {cuisine} recipes using only the ingredients specified. 
+First, check if any item in this ingredient list: {query}, is harmful or non-edible. If so, say "Sorry, one or more ingredients are not valid."
+If all ingredients are valid, create two recipe suggestions using only the following:
+- Ingredients: {ingredients}
+- Protein: {protein} > adjust / introduce / remove the ingredients according touser preference
+- Carbs: {carb} > adjust / introduce / remove the ingredients according to user preference
+- Cuisine: {cuisine}
+- Cooking Time must be less than {time}
 
-Use the following five chef-created Indian recipes (listed separately below) as inspiration, but do not copy them. Instead, think creatively and come up with entirely new Indian recipes that blend traditional flavor, uniqueness, and everyday feasibility.
+You can add non-harmful, flavor-enhancing ingredients commonly used in {cuisine} but **do not introduce new main ingredients**. Use the provided chef-created {cuisine} recipes (listed below) for inspiration, but **do not copy them**. Create entirely new recipes with traditional and innovative flavor combinations.
 
-Only display recipes and no opening and closing lines. The recipe should be a meal recipe or dessert depending on ingredients input by
-Each recipe you create should include:
-A creative and descriptive recipe name
-A brief summary of the dish (its flavor profile, what makes it unique)
-A clear ingredient list (using only the provided ingredients)
-Step-by-step cooking instructions that are easy to follow
- - Give time of prep, calories. Also tell how you arrived at the time and calories level.
-- Do not add any additional ingredients beyond what's listed.
+For each recipe, include:
+- A creative and descriptive recipe name
+- A brief summary of the dish (flavor profile, what makes it unique)
+- Ingredient list (using only the provided ingredients)
+- Step-by-step instructions
+- Prep time, cooking time, and total time, along with calorie estimates and how you arrived at them
+- Focus on practicality and taste, ensuring the recipe is easy to prepare
 
-Guidelines:
-- Focus on Indian flavor balance, texture, and innovation
-- Dont add new ingredients
-- Recipes should not be overly similar to the five provided examples
-- Keep practicality and taste in mind!
-- try not to increase the number of ingredients else it will become difficult for the user to get them
+Do not add any ingredients beyond what is listed. Avoid overly similar recipes to the examples given. Focus on a balance of flavor, texture, and innovation.
 
-Example outpur 
-**Example Output:**
+Example output:
 
-###Recipe Name: 🥘 Aloo Broccoli Paneer Tikki
+###Recipe Name: 🥘 Aloo Broccoli Paneer Tikki**
 
 **Summary:**  
-This is a crispy, golden-brown potato patty filled with crumbled paneer and steamed broccoli. It's a perfect snack or appetizer, offering a great blend of textures and flavors with simple Indian spices.
+A crispy, golden-brown patty made from mashed potato, crumbled paneer, and steamed broccoli, offering a satisfying blend of textures and flavors with {cuisine} spices.
 
 **Ingredients:**  
 - 1 cup broccoli, finely chopped  
-- 1 medium potato (aloo), boiled and mashed  
+- 1 medium potato (boiled and mashed)  
 - 1 cup paneer, crumbled  
 - 1 tsp cumin powder  
 - ½ tsp coriander powder  
 - ½ tsp red chili powder  
 - 1 tbsp chopped cilantro  
 - Salt to taste  
-- 1–2 tbsp breadcrumbs (optional, for binding)  
+- 1–2 tbsp breadcrumbs (optional)  
 - 1 tbsp oil (for frying)
 
 **Instructions:**
-1. **Prep the filling (5 mins):** Boil and mash the potato. Steam the broccoli for 2–3 minutes and chop it finely. Crumble the paneer.
-2. **Mix ingredients (5 mins):** In a large bowl, combine mashed potato, crumbled paneer, chopped broccoli, cumin powder, coriander powder, red chili powder, and salt. Add chopped cilantro. If the mixture is too soft, add breadcrumbs for better binding.
-3. **Shape the tikkis (5 mins):** Take small portions of the mixture and shape them into round or oval patties.
-4. **Fry (5–7 mins):** Heat oil in a non-stick pan. Fry the tikkis on medium heat for 2–3 minutes per side, or until golden and crisp.
-5. **Serve:** Serve hot with mint chutney or tamarind sauce.
+1. **Prep the filling (5 mins):** Boil and mash the potato. Steam and chop broccoli. Crumble the paneer.
+2. **Mix ingredients (5 mins):** Combine potato, paneer, broccoli, spices, and salt. Add breadcrumbs if needed for binding.
+3. **Shape the tikkis (5 mins):** Form small round or oval patties.
+4. **Fry (5–7 mins):** Heat oil and fry tikkis until golden and crispy, about 2–3 minutes per side.
+5. **Serve:** Enjoy with chutney or sauce.
 
 **Estimated Time Breakdown:**
 - Prep time: 5 mins
@@ -165,22 +170,23 @@ This is a crispy, golden-brown potato patty filled with crumbled paneer and stea
 - Shaping time: 5 mins
 
 ✅ **Total Time:** ~15–17 minutes  
-🔥 **Calories (per serving):** ~180–220  
-(Main calorie contributors: potato and paneer; broccoli adds fiber and nutrients.)
-\n\n{recipe_info}\n\n
+🔥 **Calories (per serving):** ~180–220
 
-Dont add any opening or closing lines. Just give recipes
+Dont add any closing lines after the recipe
 """
-           
+
+
+       
            
            chat_client = AzureOpenAIChat()
            response = chat_client.generate_response(prompt)
-        
+           #st.write(response)
            recipe_content = response["choices"][0]["message"]["content"]
-           recipe_content = recipe_content.replace("```json", "").replace("```", "").strip()
            st.write(recipe_content)
-    # else:
-    #             print("No similar recipes found.")
+           recipe_content = recipe_content.replace("```json", "").replace("```", "").strip()
+          
+    else:
+                print("No similar recipes found.")
 
                
 # container = st.container(border=True)
